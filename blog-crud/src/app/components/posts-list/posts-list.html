@@ -1,0 +1,45 @@
+<div class="container mt-4 fade-in">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">📌 Lista de Posts</h2>
+    <a class="btn btn-primary shadow-sm" routerLink="/new">
+      ➕ Nuevo Post
+    </a>
+  </div>
+
+  <!-- Si no hay posts -->
+  <div *ngIf="posts.length === 0" class="alert alert-info text-center py-4">
+    No hay posts todavía. ¡Crea uno nuevo!
+  </div>
+
+  <!-- Lista de posts -->
+  <div class="row">
+    <div *ngFor="let post of posts" class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100 shadow hover-card">
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-primary">
+            {{ post.title }}
+          </h5>
+          <p class="card-text text-muted">
+            {{ post.body }}
+          </p>
+        </div>
+        <div class="card-footer bg-white border-0 d-flex gap-2">
+          <a [routerLink]="['/post', post.id]" 
+             class="btn btn-sm btn-outline-primary w-100">
+            Ver
+          </a>
+          <a [routerLink]="['/edit', post.id]" 
+             class="btn btn-sm btn-outline-warning w-100">
+            Editar
+          </a>
+          <button (click)="delete(post.id!)" 
+                  class="btn btn-sm btn-outline-danger w-100">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,23 @@
+<div class="container mt-4" *ngIf="post">
+
+  <h3>{{ post.title }}</h3>
+  <p>{{ post.body }}</p>
+
+<a class="btn btn-warning mb-4" [routerLink]="['/edit', post.id]">Editar</a>
+
+  <h4>Usuario</h4>
+  <p *ngIf="user">
+    <strong>{{ user.name }}</strong><br>
+    ({{ user.email }})<br>
+    {{ user.address.street }}, {{ user.address.city }}
+  </p>
+
+  <h4 class="mt-4">Comentarios</h4>
+
+  <div class="card mb-2" *ngFor="let c of comments">
+    <div class="card-body">
+      <b>{{ c.name }}</b> – {{ c.email }}
+      <p>{{ c.body }}</p>
+    </div>
+  </div>
+</div>
